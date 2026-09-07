@@ -1,0 +1,1840 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parqueadero Automático</title>
+
+    <style>
+
+        body {
+            background-color: lightgray;
+            font-family: Arial;
+            margin: 0;
+        }
+
+        .pagina {
+            width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            border: 1px solid black;
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        .encabezado {
+            background-color: #f8f6f6;
+            color: rgb(2, 2, 2);
+            text-align: center;
+            padding: 20px;
+        }
+
+
+        .encabezado h1 {
+            margin: 0;
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            background-color: #777;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .menu div {
+            display: inline;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .menu div:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           CONTENIDO
+        ========================= */
+
+        .contenido {
+            display: flex;
+        }
+
+
+        /* =========================
+           PARQUEADERO
+        ========================= */
+
+        .parqueadero {
+            width: 70%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           INFORMACION
+        ========================= */
+
+        .informacion {
+            width: 30%;
+            background-color: #ddd;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           ESPACIOS
+        ========================= */
+
+        .espacios {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+
+        .espacio {
+            height: 80px;
+            border: 2px solid black;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* ESPACIO DISPONIBLE */
+
+        .disponible {
+            background-color: #d9f7d9;
+        }
+
+
+        .disponible strong {
+            color: green;
+        }
+
+
+        /* ESPACIO OCUPADO */
+
+        .ocupado {
+            background-color: #f7cccc;
+        }
+
+
+        .ocupado strong {
+            color: red;
+        }
+
+
+        /* =========================
+           CAJAS
+        ========================= */
+
+        .caja {
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+
+        .caja h3 {
+            margin-top: 5px;
+        }
+
+
+        .caja p {
+            margin: 8px 0;
+        }
+
+
+        /* =========================
+           FORMULARIOS
+        ========================= */
+
+        .formulario {
+            background-color: #eeeeee;
+            border: 1px solid black;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+
+        .formulario h3 {
+            margin-top: 0;
+        }
+
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+
+        button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+
+        button:hover {
+            background-color: #333;
+        }
+
+
+        /* =========================
+           REGISTROS
+        ========================= */
+
+        .registros {
+            padding: 20px;
+            border-top: 2px solid black;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+        th {
+            background-color: #555;
+            color: white;
+        }
+
+
+        .estado-ocupado {
+            color: red;
+            font-weight: bold;
+        }
+
+
+        .estado-finalizado {
+            color: green;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           PIE
+        ========================= */
+
+        .pie {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+
+        /* =========================
+           MENSAJES
+        ========================= */
+
+        .mensaje {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid black;
+            display: none;
+        }
+
+
+        .mensaje.exito {
+            background-color: #d9f7d9;
+            color: green;
+            display: block;
+        }
+
+
+        .mensaje.error {
+            background-color: #f7cccc;
+            color: red;
+            display: block;
+        }
+
+
+        /* =========================
+           RESPONSIVE BASICO
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .pagina {
+                width: 95%;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .contenido {
+                flex-direction: column;
+            }
+
+            .parqueadero,
+            .informacion {
+                width: 100%;
+            }
+
+            .espacios {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="pagina">
+
+
+    <!-- =====================================
+         ENCABEZADO
+    ====================================== -->
+
+    <div class="encabezado" id="inicio">
+
+        <h1>PARQUEADERO AUTOMÁTICO</h1>
+
+        <p>Sistema de parqueadero</p>
+
+    </div>
+
+
+    <!-- =====================================
+         MENU
+    ====================================== -->
+
+    <div class="menu">
+
+        <div onclick="irAInicio()">
+            Inicio
+        </div>
+
+        <div onclick="irAParqueadero()">
+            Parqueadero
+        </div>
+
+        <div onclick="irAVehiculos()">
+            Vehículos
+        </div>
+
+        <div onclick="irARegistros()">
+            Registros
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         CONTENIDO
+    ====================================== -->
+
+    <div class="contenido">
+
+
+        <!-- =================================
+             PARQUEADERO
+        ================================== -->
+
+        <div class="parqueadero" id="seccionParqueadero">
+
+
+            <h2>Espacios del parqueadero</h2>
+
+
+            <!-- REGISTRAR ENTRADA -->
+
+            <div class="formulario">
+
+                <h3>Registrar entrada de vehículo</h3>
+
+                <input
+                    type="text"
+                    id="placaEntrada"
+                    placeholder="Ingrese la placa del vehículo"
+                    maxlength="6"
+                    onkeyup="convertirMayusculas(this)"
+                >
+
+                <button onclick="registrarEntrada()">
+                    Registrar entrada
+                </button>
+
+                <div id="mensajeEntrada" class="mensaje"></div>
+
+            </div>
+
+
+            <!-- ESPACIOS -->
+
+            <div class="espacios" id="espacios">
+
+
+                <!-- ESPACIO 1 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio1"
+                >
+
+                    <strong>Espacio 1</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 2 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio2"
+                >
+
+                    <strong>Espacio 2</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 3 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio3"
+                >
+
+                    <strong>Espacio 3</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 4 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio4"
+                >
+
+                    <strong>Espacio 4</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 5 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio5"
+                >
+
+                    <strong>Espacio 5</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 6 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio6"
+                >
+
+                    <strong>Espacio 6</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 7 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio7"
+                >
+
+                    <strong>Espacio 7</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 8 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio8"
+                >
+
+                    <strong>Espacio 8</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 9 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio9"
+                >
+
+                    <strong>Espacio 9</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 10 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio10"
+                >
+
+                    <strong>Espacio 10</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 11 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio11"
+                >
+
+                    <strong>Espacio 11</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 12 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio12"
+                >
+
+                    <strong>Espacio 12</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 13 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio13"
+                >
+
+                    <strong>Espacio 13</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 14 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio14"
+                >
+
+                    <strong>Espacio 14</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 15 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio15"
+                >
+
+                    <strong>Espacio 15</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 16 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio16"
+                >
+
+                    <strong>Espacio 16</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 17 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio17"
+                >
+
+                    <strong>Espacio 17</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 18 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio18"
+                >
+
+                    <strong>Espacio 18</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 19 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio19"
+                >
+
+                    <strong>Espacio 19</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+                <!-- ESPACIO 20 -->
+
+                <div
+                    class="espacio disponible"
+                    id="espacio20"
+                >
+
+                    <strong>Espacio 20</strong>
+
+                    <span>Disponible</span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             INFORMACION
+        ================================== -->
+
+        <div class="informacion">
+
+
+            <!-- INFORMACION GENERAL -->
+
+            <div class="caja">
+
+                <h3>Información general</h3>
+
+                <p>
+                    Espacios totales:
+                    <strong id="total">20</strong>
+                </p>
+
+                <p>
+                    Espacios disponibles:
+                    <strong id="disponibles">20</strong>
+                </p>
+
+                <p>
+                    Espacios ocupados:
+                    <strong id="ocupados">0</strong>
+                </p>
+
+            </div>
+
+
+            <!-- ENTRADA -->
+
+            <div class="caja">
+
+                <h3>Inf. Entrada</h3>
+
+                <p>
+                    Barrera de entrada:
+                    <strong id="barreraEntrada">
+                        Cerrada
+                    </strong>
+                </p>
+
+                <p>
+                    Sensor de entrada:
+                    <strong id="sensorEntrada">
+                        Libre
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- SALIDA -->
+
+            <div class="caja">
+
+                <h3>Salida</h3>
+
+                <p>
+                    Barrera de salida:
+                    <strong id="barreraSalida">
+                        Cerrada
+                    </strong>
+                </p>
+
+                <p>
+                    Sensor de salida:
+                    <strong id="sensorSalida">
+                        Libre
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- ESTADO -->
+
+            <div class="caja">
+
+                <h3>Estado</h3>
+
+                <p>
+                    Sistema:
+                    <strong id="sistema">
+                        Activo
+                    </strong>
+                </p>
+
+                <p>
+                    Cámaras:
+                    <strong id="camaras">
+                        Activas
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- =================================
+                 REGISTRAR SALIDA
+            ================================== -->
+
+            <div class="caja">
+
+                <h3>Registrar salida</h3>
+
+                <input
+                    type="text"
+                    id="placaSalida"
+                    placeholder="Ingrese la placa"
+                    maxlength="6"
+                    onkeyup="convertirMayusculas(this)"
+                >
+
+                <button onclick="registrarSalida()">
+                    Registrar salida
+                </button>
+
+                <div id="mensajeSalida" class="mensaje"></div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         REGISTROS
+    ====================================== -->
+
+    <div class="registros" id="seccionRegistros">
+
+        <h2>Registro de vehículos</h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Placa</th>
+
+                    <th>Hora entrada</th>
+
+                    <th>Hora salida</th>
+
+                    <th>Espacio</th>
+
+                    <th>Estado</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tablaRegistros">
+
+                <!--
+                    Los registros aparecerán
+                    automáticamente aquí.
+                -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =====================================
+         PIE
+    ====================================== -->
+
+    <div class="pie">
+
+        Parqueadero Automático -
+        Sistema de gestión
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   VARIABLES DEL SISTEMA
+========================================= */
+
+const TOTAL_ESPACIOS = 20;
+
+
+/*
+    Array que almacena el estado
+    de cada espacio.
+*/
+
+let espacios = [];
+
+
+/*
+    Array que almacena los
+    registros de vehículos.
+*/
+
+let registros = [];
+
+
+
+/* =========================================
+   INICIAR SISTEMA
+========================================= */
+
+window.onload = function () {
+
+    inicializarEspacios();
+
+    actualizarInformacion();
+
+    actualizarTabla();
+
+};
+
+
+
+/* =========================================
+   CREAR ESPACIOS
+========================================= */
+
+function inicializarEspacios() {
+
+
+    for (let i = 1; i <= TOTAL_ESPACIOS; i++) {
+
+        espacios.push({
+
+            numero: i,
+
+            ocupado: false,
+
+            placa: null
+
+        });
+
+    }
+
+}
+
+
+
+/* =========================================
+   REGISTRAR ENTRADA
+========================================= */
+
+function registrarEntrada() {
+
+
+    /*
+        Obtener placa.
+    */
+
+    let campo =
+        document.getElementById("placaEntrada");
+
+
+    let placa =
+        campo.value.trim().toUpperCase();
+
+
+
+    /*
+        Verificar que se haya
+        ingresado una placa.
+    */
+
+    if (placa === "") {
+
+        mostrarMensaje(
+            "mensajeEntrada",
+            "Por favor ingrese una placa.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Verificar longitud mínima.
+    */
+
+    if (placa.length < 5) {
+
+        mostrarMensaje(
+            "mensajeEntrada",
+            "La placa ingresada no es válida.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Verificar si el vehículo
+        ya está dentro.
+    */
+
+    let vehiculoDentro =
+        registros.find(function (registro) {
+
+            return registro.placa === placa &&
+                   registro.estado === "Ocupado";
+
+        });
+
+
+
+    if (vehiculoDentro) {
+
+        mostrarMensaje(
+            "mensajeEntrada",
+            "El vehículo " +
+            placa +
+            " ya está dentro del parqueadero.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Buscar primer espacio
+        disponible.
+    */
+
+    let espacioDisponible =
+        espacios.find(function (espacio) {
+
+            return espacio.ocupado === false;
+
+        });
+
+
+
+    /*
+        Verificar si el parqueadero
+        está lleno.
+    */
+
+    if (!espacioDisponible) {
+
+        mostrarMensaje(
+            "mensajeEntrada",
+            "El parqueadero está lleno.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Ocupar espacio.
+    */
+
+    espacioDisponible.ocupado = true;
+
+    espacioDisponible.placa = placa;
+
+
+
+    /*
+        Obtener hora actual.
+    */
+
+    let hora =
+        obtenerHora();
+
+
+
+    /*
+        Crear registro.
+    */
+
+    let registro = {
+
+        placa: placa,
+
+        horaEntrada: hora,
+
+        horaSalida: "-",
+
+        espacio: espacioDisponible.numero,
+
+        estado: "Ocupado"
+
+    };
+
+
+
+    /*
+        Guardar registro.
+    */
+
+    registros.push(registro);
+
+
+
+    /*
+        Actualizar espacio visual.
+    */
+
+    actualizarEspacio(
+        espacioDisponible
+    );
+
+
+
+    /*
+        Actualizar contadores.
+    */
+
+    actualizarInformacion();
+
+
+
+    /*
+        Actualizar tabla.
+    */
+
+    actualizarTabla();
+
+
+
+    /*
+        Simular barrera.
+    */
+
+    abrirBarreraEntrada();
+
+
+
+    /*
+        Limpiar campo.
+    */
+
+    campo.value = "";
+
+
+
+    /*
+        Mostrar mensaje.
+    */
+
+    mostrarMensaje(
+        "mensajeEntrada",
+        "Entrada registrada. " +
+        "Vehículo " +
+        placa +
+        " asignado al espacio " +
+        espacioDisponible.numero +
+        ".",
+        "exito"
+    );
+
+}
+
+
+
+/* =========================================
+   REGISTRAR SALIDA
+========================================= */
+
+function registrarSalida() {
+
+
+    let campo =
+        document.getElementById("placaSalida");
+
+
+    let placa =
+        campo.value.trim().toUpperCase();
+
+
+
+    /*
+        Verificar campo.
+    */
+
+    if (placa === "") {
+
+        mostrarMensaje(
+            "mensajeSalida",
+            "Por favor ingrese una placa.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Buscar vehículo.
+    */
+
+    let registro =
+        registros.find(function (registro) {
+
+            return registro.placa === placa &&
+                   registro.estado === "Ocupado";
+
+        });
+
+
+
+    /*
+        Verificar existencia.
+    */
+
+    if (!registro) {
+
+        mostrarMensaje(
+            "mensajeSalida",
+            "No se encontró el vehículo " +
+            placa +
+            " dentro del parqueadero.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Registrar hora de salida.
+    */
+
+    registro.horaSalida =
+        obtenerHora();
+
+
+
+    /*
+        Cambiar estado.
+    */
+
+    registro.estado =
+        "Finalizado";
+
+
+
+    /*
+        Buscar espacio.
+    */
+
+    let espacio =
+        espacios.find(function (espacio) {
+
+            return espacio.numero === registro.espacio;
+
+        });
+
+
+
+    /*
+        Liberar espacio.
+    */
+
+    espacio.ocupado = false;
+
+    espacio.placa = null;
+
+
+
+    /*
+        Actualizar espacio.
+    */
+
+    actualizarEspacio(espacio);
+
+
+
+    /*
+        Actualizar contadores.
+    */
+
+    actualizarInformacion();
+
+
+
+    /*
+        Actualizar tabla.
+    */
+
+    actualizarTabla();
+
+
+
+    /*
+        Simular barrera.
+    */
+
+    abrirBarreraSalida();
+
+
+
+    /*
+        Limpiar campo.
+    */
+
+    campo.value = "";
+
+
+
+    /*
+        Mostrar mensaje.
+    */
+
+    mostrarMensaje(
+        "mensajeSalida",
+        "Salida registrada correctamente. " +
+        "El espacio " +
+        registro.espacio +
+        " está disponible nuevamente.",
+        "exito"
+    );
+
+}
+
+
+
+/* =========================================
+   ACTUALIZAR ESPACIO
+========================================= */
+
+function actualizarEspacio(espacio) {
+
+
+    let elemento =
+        document.getElementById(
+            "espacio" + espacio.numero
+        );
+
+
+
+    if (espacio.ocupado) {
+
+
+        /*
+            Espacio ocupado.
+        */
+
+        elemento.className =
+            "espacio ocupado";
+
+
+        elemento.innerHTML = `
+
+            <strong>
+                Espacio ${espacio.numero}
+            </strong>
+
+            <span>
+                ${espacio.placa}
+            </span>
+
+            <span>
+                Ocupado
+            </span>
+
+        `;
+
+
+    } else {
+
+
+        /*
+            Espacio disponible.
+        */
+
+        elemento.className =
+            "espacio disponible";
+
+
+        elemento.innerHTML = `
+
+            <strong>
+                Espacio ${espacio.numero}
+            </strong>
+
+            <span>
+                Disponible
+            </span>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================
+   ACTUALIZAR INFORMACIÓN
+========================================= */
+
+function actualizarInformacion() {
+
+
+    /*
+        Contar espacios ocupados.
+    */
+
+    let cantidadOcupados =
+        espacios.filter(function (espacio) {
+
+            return espacio.ocupado;
+
+        }).length;
+
+
+
+    /*
+        Calcular disponibles.
+    */
+
+    let cantidadDisponibles =
+        TOTAL_ESPACIOS -
+        cantidadOcupados;
+
+
+
+    /*
+        Actualizar pantalla.
+    */
+
+    document.getElementById("total")
+        .textContent =
+        TOTAL_ESPACIOS;
+
+
+    document.getElementById("disponibles")
+        .textContent =
+        cantidadDisponibles;
+
+
+    document.getElementById("ocupados")
+        .textContent =
+        cantidadOcupados;
+
+}
+
+
+
+/* =========================================
+   ACTUALIZAR TABLA
+========================================= */
+
+function actualizarTabla() {
+
+
+    let tabla =
+        document.getElementById(
+            "tablaRegistros"
+        );
+
+
+    /*
+        Limpiar tabla.
+    */
+
+    tabla.innerHTML = "";
+
+
+
+    /*
+        Recorrer registros.
+    */
+
+    registros.forEach(function (registro) {
+
+
+        let fila =
+            document.createElement("tr");
+
+
+
+        /*
+            Determinar clase
+            según estado.
+        */
+
+        let claseEstado = "";
+
+        if (registro.estado === "Ocupado") {
+
+            claseEstado =
+                "estado-ocupado";
+
+        } else {
+
+            claseEstado =
+                "estado-finalizado";
+
+        }
+
+
+
+        /*
+            Crear fila.
+        */
+
+        fila.innerHTML = `
+
+            <td>
+                ${registro.placa}
+            </td>
+
+            <td>
+                ${registro.horaEntrada}
+            </td>
+
+            <td>
+                ${registro.horaSalida}
+            </td>
+
+            <td>
+                ${registro.espacio}
+            </td>
+
+            <td class="${claseEstado}">
+                ${registro.estado}
+            </td>
+
+        `;
+
+
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+
+
+/* =========================================
+   OBTENER HORA
+========================================= */
+
+function obtenerHora() {
+
+
+    let ahora =
+        new Date();
+
+
+    return ahora.toLocaleTimeString(
+        "es-CO",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   BARRERA DE ENTRADA
+========================================= */
+
+function abrirBarreraEntrada() {
+
+
+    let barrera =
+        document.getElementById(
+            "barreraEntrada"
+        );
+
+
+    let sensor =
+        document.getElementById(
+            "sensorEntrada"
+        );
+
+
+
+    /*
+        Abrir barrera.
+    */
+
+    barrera.textContent =
+        "Abierta";
+
+
+    sensor.textContent =
+        "Vehículo detectado";
+
+
+
+    /*
+        Cerrar después
+        de 3 segundos.
+    */
+
+    setTimeout(function () {
+
+
+        barrera.textContent =
+            "Cerrada";
+
+
+        sensor.textContent =
+            "Libre";
+
+
+    }, 3000);
+
+}
+
+
+
+/* =========================================
+   BARRERA DE SALIDA
+========================================= */
+
+function abrirBarreraSalida() {
+
+
+    let barrera =
+        document.getElementById(
+            "barreraSalida"
+        );
+
+
+    let sensor =
+        document.getElementById(
+            "sensorSalida"
+        );
+
+
+
+    /*
+        Abrir barrera.
+    */
+
+    barrera.textContent =
+        "Abierta";
+
+
+    sensor.textContent =
+        "Vehículo detectado";
+
+
+
+    /*
+        Cerrar después
+        de 3 segundos.
+    */
+
+    setTimeout(function () {
+
+
+        barrera.textContent =
+            "Cerrada";
+
+
+        sensor.textContent =
+            "Libre";
+
+
+    }, 3000);
+
+}
+
+
+
+/* =========================================
+   MOSTRAR MENSAJES
+========================================= */
+
+function mostrarMensaje(
+    id,
+    texto,
+    tipo
+) {
+
+
+    let elemento =
+        document.getElementById(id);
+
+
+    elemento.textContent =
+        texto;
+
+
+    elemento.className =
+        "mensaje " + tipo;
+
+
+
+    /*
+        Ocultar después
+        de 5 segundos.
+    */
+
+    setTimeout(function () {
+
+        elemento.style.display =
+            "none";
+
+    }, 5000);
+
+}
+
+
+
+/* =========================================
+   CONVERTIR A MAYÚSCULAS
+========================================= */
+
+function convertirMayusculas(elemento) {
+
+    elemento.value =
+        elemento.value.toUpperCase();
+
+}
+
+
+
+/* =========================================
+   NAVEGACIÓN DEL MENÚ
+========================================= */
+
+function irAInicio() {
+
+
+    document.getElementById("inicio")
+        .scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+}
+
+
+
+function irAParqueadero() {
+
+
+    document.getElementById(
+        "seccionParqueadero"
+    )
+    .scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+function irAVehiculos() {
+
+
+    document.getElementById(
+        "placaEntrada"
+    )
+    .scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+
+    setTimeout(function () {
+
+        document.getElementById(
+            "placaEntrada"
+        ).focus();
+
+    }, 500);
+
+}
+
+
+
+function irARegistros() {
+
+
+    document.getElementById(
+        "seccionRegistros"
+    )
+    .scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>
+```
