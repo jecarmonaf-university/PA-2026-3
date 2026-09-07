@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Parqueadero Automatico</title>
+
+    <style>
+
+        body {
+            background-color: lightgray;
+            font-family: Arial;
+        }
+        .pagina {
+            width: 900px;
+            margin: auto;
+            background-color: white;
+            border: 1px solid black;
+        }
+        .encabezado {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .menu {
+            background-color: #777;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .menu div {
+            display: inline;
+            margin: 20px;
+        }
+        .contenido {
+            display: flex;
+        }
+        .parqueadero {
+            width: 70%;
+            padding: 20px;
+        }
+        .informacion {
+            width: 30%;
+            background-color: #ddd;
+            padding: 20px;
+        }
+        .espacios {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .espacio {
+            height: 60px;
+            border: 2px solid black;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding-top: 20px;
+        }
+        .caja {
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .registros {
+            padding: 20px;
+            border-top: 2px solid black;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #555;
+            color: white;
+        }
+        .pie {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="pagina">
+             <!--ENCABEZADO-->
+    <div class="encabezado">
+        <h1>PARQUEADERO AUTOMATICO</h1>
+        <p>Sistema de parqueadero</p>
+    </div>
+             <!--MENU--> 
+    <div class="menu">
+        <div>Inicio</div>
+        <div>Parqueadero</div>
+        <div>Vehiculos</div>
+        <div>Registros</div>
+
+    </div>
+    <!-- CONTENIDO MAKETA -->
+    <div class="contenido">
+        <!-- PARQUEADERO -->
+        <div class="parqueadero">
+            <h2>Espacios del parqueadero</h2>
+            <div class="espacios">
+                <div class="espacio">numero nCOL</div>
+                <div class="espacio">Espacio 2</div>
+                <div class="espacio">Espacio 3</div>
+                <div class="espacio">Espacio 4</div>
+                <div class="espacio">Espacio 5</div>
+
+                <div class="espacio">Espacio 6</div>
+                <div class="espacio">Espacio 7</div>
+                <div class="espacio">Espacio 8</div>
+                <div class="espacio">Espacio 9</div>
+                <div class="espacio">Espacio 10</div>
+
+                <div class="espacio">Espacio 11</div>
+                <div class="espacio">Espacio 12</div>
+                <div class="espacio">Espacio 13</div>
+                <div class="espacio">Espacio 14</div>
+                <div class="espacio">Espacio 15</div>
+
+                <div class="espacio">Espacio 16</div>
+                <div class="espacio">Espacio 17</div>
+                <div class="espacio">Espacio 18</div>
+                <div class="espacio">Espacio 19</div>
+                <div class="espacio">Espacios n+1</div>
+                <div class="espacio">numero nFIL</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFORMACION -->
+
+        <div class="informacion">
+
+            <div class="caja">
+
+                <h3>Informacion general</h3>
+
+                <p>Espacios totales</p>
+
+                <p>Espacios disponibles</p>
+
+                <p>Espacios ocupados</p>
+
+            </div>
+
+
+            <div class="caja">
+
+                <h3>inf. Entrada</h3>
+
+                <p>Barrera de entrada</p>
+
+                <p>Sensor de entrada</p>
+
+            </div>
+
+
+            <div class="caja">
+
+                <h3>Salida</h3>
+
+                <p>Barrera de salida</p>
+
+                <p>Sensor de salida</p>
+
+            </div>
+
+
+            <div class="caja">
+
+                <h3>Estado</h3>
+
+                <p>Sistema activo</p>
+
+                <p>Camaras activas</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REGISTROS -->
+
+    <div class="registros">
+
+        <h2>Registro de vehiculos</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Placa</th>
+
+                <th>Hora</th>
+
+                <th>Espacio</th>
+
+                <th>Estado</th>
+
+            </tr>
+
+            <tr>
+
+                <td>ABC123</td>
+
+                <td>08:00</td>
+
+                <td>5</td>
+
+                <td>Ocupado</td>
+
+            </tr>
+
+            <tr>
+
+                <td>XYZ456</td>
+
+                <td>09:00</td>
+
+                <td>12</td>
+
+                <td>Ocupado</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <!-- PIE -->
+
+    <div class="pie">
+         Datos de Contacto del parqueadero
+    </div>
+</div>
+</body>
+</html>
