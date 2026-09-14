@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Curso de Electrónica Básica</title>
+
+</head>
+
+
+<body style="width: 800px; border: 3px gray; margin: 10px auto; padding: auto; background-color: white;">
+
+    <div>
+
+        <div style = "border: 2px solid black; width: 800px; margin: 20px auto; padding: 15px; background-color: lightblue;">
+
+            <h1>Tutorial: Mi Primer Circuito Electrónico</h1>
+
+            <p>
+                Aprende paso a paso cómo construir un circuito LED básico.
+            </p>
+
+        </div>
+
+
+        <div style="border: 2px solid darkblue; width: 800px; margin: 10px auto; padding: 6px 10px; background-color: lightgray; font-size: 16px; text-align: center;">
+
+            <strong style="font-size: 18px; margin-right: 10px;">Menú:</strong>
+            <a href="#introduccion">Introducción</a> |
+            <a href="#herramientas">Herramientas</a> |
+            <a href="#materiales">Materiales</a> |
+            <a href="#pasos">Pasos</a> |
+            <a href="#formulario">Evaluación</a>
+
+        </div>
+
+
+        <hr>
+
+        <div id="introduccion" style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h2>1. Introducción</h2>
+
+            <p>
+                En este tutorial aprenderemos a construir un circuito
+                electrónico sencillo utilizando una batería, una resistencia,
+                un LED y una protoboard.
+            </p>
+
+            <h3>Objetivo</h3>
+
+            <p>
+                Comprender cómo circula la corriente eléctrica por un
+                circuito básico y aprender a conectar correctamente
+                sus componentes.
+            </p>
+
+            <p>
+                <strong>Importante:</strong>
+                Antes de conectar el circuito verifica la polaridad
+                de la batería y del LED.
+            </p>
+
+        </div>
+
+
+        <hr>
+
+        <div id="herramientas" style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h2>2. Toolbox: Herramientas y componentes</h2>
+
+            <p>
+                Estos son los elementos necesarios para realizar el proyecto:
+            </p>
+    
+            <div>
+
+                <h3>1. Batería</h3>
+                <img src="Bateria.png" width="100px" height="100px"  >
+                <p>
+                    Proporciona la energía necesaria para que funcione
+                    el circuito.
+                </p>
+
+                <p>
+                    <strong>Cantidad:</strong> 1
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>2. LED</h3>
+                <img src="LED.png" width="100px" height="100px">
+                <p>
+                    Es el componente que producirá luz cuando circule
+                    corriente.
+                </p>
+
+                <p>
+                    <strong>Cantidad:</strong> 1
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>3. Resistencia</h3>
+                <img src="Resistencia.png" width="100px" height="100px">
+                <p>
+                    Limita la corriente que circula por el LED y evita
+                    que se queme.
+                </p>
+
+                <p>
+                    <strong>Valor:</strong> 220 Ω
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>4. Protoboard</h3>
+                <img src="Proto.png" width="100px" height="100px">
+                <p>
+                    Permite realizar conexiones electrónicas sin
+                    necesidad de soldar.
+                </p>
+
+                <p>
+                    <strong>Cantidad:</strong> 1
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+        <div id="materiales" style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h2>3. Materiales</h2>
+
+            <table border="1">
+
+                <tr>
+
+                    <th>Componente</th>
+                    <th>Cantidad</th>
+                    <th>Función</th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>LED</td>
+                    <td>1</td>
+                    <td>Generar luz</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Resistencia de 220 Ω</td>
+                    <td>1</td>
+                    <td>Limitar la corriente</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Batería</td>
+                    <td>1</td>
+                    <td>Fuente de energía</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Protoboard</td>
+                    <td>1</td>
+                    <td>Realizar conexiones</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Cables</td>
+                    <td>Varios</td>
+                    <td>Conectar componentes</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <hr>
+
+        <div id="pasos" style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h2>4. Procedimiento paso a paso</h2>
+
+            <div>
+
+                <h3>Paso 1: Colocar la resistencia</h3>
+
+                <p>
+                    Introduce la resistencia de 220 Ω en la protoboard.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Paso 2: Conectar el LED</h3>
+
+                <p>
+                    Coloca el LED en la protoboard teniendo en cuenta
+                    su polaridad.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Paso 3: Conectar la batería</h3>
+
+                <p>
+                    Conecta el terminal positivo de la batería al circuito
+                    mediante la resistencia.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Paso 4: Completar el circuito</h3>
+
+                <p>
+                    Conecta el terminal negativo de la batería al cátodo
+                    del LED.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Paso 5: Comprobar el resultado</h3>
+
+                <p>
+                    Si todas las conexiones son correctas, el LED debería
+                    encenderse.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+        <div id="formulario" style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h2>5. Comprueba tus conocimientos</h2>
+
+
+            <form>
+
+
+                <div>
+
+                    <label for="nombre">
+                        Nombre:
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Escribe tu nombre"
+                    >
+
+                </div>
+
+
+                <br>
+
+                <div>
+
+                    <label for="correo">
+                        Correo electrónico:
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="ejemplo@correo.com"
+                    >
+
+                </div>
+
+
+                <br>
+
+                <div>
+
+                    <label for="componente">
+
+                        ¿Cuál componente limita la corriente?
+
+                    </label>
+
+                    <br>
+
+                    <select id="componente" name="componente">
+
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option value="led">
+                            LED
+                        </option>
+
+                        <option value="resistencia">
+                            Resistencia
+                        </option>
+
+                        <option value="bateria">
+                            Batería
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <br>
+
+                <div>
+
+                    <p>
+                        ¿Para qué sirve la protoboard?
+                    </p>
+
+
+                    <input
+                        type="radio"
+                        id="conectar"
+                        name="protoboard"
+                        value="conectar"
+                    >
+
+                    <label for="conectar">
+                        Realizar conexiones sin soldar
+                    </label>
+
+
+                    <br>
+
+
+                    <input
+                        type="radio"
+                        id="energia"
+                        name="protoboard"
+                        value="energia"
+                    >
+
+                    <label for="energia">
+                        Generar energía
+                    </label>
+
+
+                    <br>
+
+
+                    <input
+                        type="radio"
+                        id="iluminar"
+                        name="protoboard"
+                        value="iluminar"
+                    >
+
+                    <label for="iluminar">
+                        Generar luz
+                    </label>
+
+                </div>
+
+
+                <br>
+
+                <div>
+
+                    <p>
+                        Selecciona los componentes utilizados:
+                    </p>
+
+
+                    <input
+                        type="checkbox"
+                        id="ledCheck"
+                        name="material"
+                        value="led"
+                    >
+
+                    <label for="ledCheck">
+                        LED
+                    </label>
+
+
+                    <br>
+
+
+                    <input
+                        type="checkbox"
+                        id="resistenciaCheck"
+                        name="material"
+                        value="resistencia"
+                    >
+
+                    <label for="resistenciaCheck">
+                        Resistencia
+                    </label>
+
+
+                    <br>
+
+
+                    <input
+                        type="checkbox"
+                        id="bateriaCheck"
+                        name="material"
+                        value="bateria"
+                    >
+
+                    <label for="bateriaCheck">
+                        Batería
+                    </label>
+
+                </div>
+
+
+                <br>
+
+                <div>
+
+                    <label for="comentario">
+
+                        ¿Qué aprendiste?
+
+                    </label>
+
+                    <br>
+
+                    <textarea
+                        id="comentario"
+                        name="comentario"
+                        rows="5"
+                        cols="50"
+                        placeholder="Escribe aquí tu respuesta..."
+                    ></textarea>
+
+                </div>
+
+
+                <br>
+
+
+                <input
+                    type="submit"
+                    value="Enviar respuestas"
+                >
+
+                <input
+                    type="reset"
+                    value="Limpiar formulario"
+                >
+
+
+            </form>
+
+        </div>
+
+
+        <hr>
+        <div style="border: 2px darkblue; width: 800px; margin: 10px auto; padding: 10px; background-color: lightgray;">
+
+            <h3>Tutorial de Electrónica Básica</h3>
+
+            <p>
+                Página desarrollada por Juan Esteban Carmona.
+            </p>
+
+            <p>
+                Programacion Aplicada 2026
+            </p>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
