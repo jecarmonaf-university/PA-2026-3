@@ -1,0 +1,15 @@
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\bin\Debug\net10.0\Caso_Balon.exe
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\bin\Debug\net10.0\Caso_Balon.deps.json
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\bin\Debug\net10.0\Caso_Balon.runtimeconfig.json
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\bin\Debug\net10.0\Caso_Balon.dll
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\bin\Debug\net10.0\Caso_Balon.pdb
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.AssemblyInfoInputs.cache
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.AssemblyInfo.cs
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.csproj.CoreCompileInputs.cache
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.dll
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\refint\Caso_Balon.dll
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.pdb
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.genruntimeconfig.cache
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\ref\Caso_Balon.dll
+C:\Users\Juan Esteban Carmona\Documents\University\FALL 2026\Applied Programming\Caso_Balon\Caso_Balon\obj\Debug\net10.0\Caso_Balon.csproj.Up2Date
