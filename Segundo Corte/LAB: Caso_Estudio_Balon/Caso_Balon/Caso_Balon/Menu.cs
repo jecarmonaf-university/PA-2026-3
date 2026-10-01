@@ -1,27 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Caso_Balon
 {
-
-    using System;
-
     public class Menu
     {
-        private Futbol ob1;
-        private Basket ob2;
-        private FutbolAmericano ob3;
-        private Volley ob4;
-
-        private bool futbolIngresado = false;
-        private bool basketIngresado = false;
-        private bool futbolAmericanoIngresado = false;
-        private bool volleyIngresado = false;
-
-        public Menu()
-        {
-        }
+        private Futbol _balon1;
+        private Basket _balon2;
+        private FutbolAmericano _balon3;
+        private Volley _balon4;
 
         public void IniciarMenu()
         {
@@ -29,7 +15,7 @@ namespace Caso_Balon
 
             do
             {
-                Console.WriteLine("\n===== MENU BALONES =====");
+                Console.WriteLine("\n===== MENÚ BALONES =====");
                 Console.WriteLine("1. Ingresar balón de fútbol");
                 Console.WriteLine("2. Ingresar balón de baloncesto");
                 Console.WriteLine("3. Ingresar balón de fútbol americano");
@@ -38,109 +24,64 @@ namespace Caso_Balon
                 Console.WriteLine("6. Mostrar balón de baloncesto");
                 Console.WriteLine("7. Mostrar balón de fútbol americano");
                 Console.WriteLine("8. Mostrar balón de voleibol");
-                Console.WriteLine("9. Inflar balón de fútbol");
-                Console.WriteLine("10. Cambiar color del balón de fútbol");
+                Console.WriteLine("9. Inflar un balón");
+                Console.WriteLine("10. Cambiar color de un balón");
                 Console.WriteLine("0. Salir");
 
-                Console.Write("\nSeleccione una opción: ");
-                opcion = Convert.ToInt32(Console.ReadLine());
+                opcion = LeerEntero("Seleccione una opción: ");
 
                 switch (opcion)
                 {
                     case 1:
-                        IngresarFutbol();
+                        IngresarBalon(out _balon1, "Fútbol", (m, c, f) => new Futbol(m, c, f));
                         break;
-
                     case 2:
-                        IngresarBasket();
+                        IngresarBalon(out _balon2, "Baloncesto", (m, c, f) => new Basket(m, c, f));
                         break;
-
                     case 3:
-                        IngresarFutbolAmericano();
+                        IngresarBalon(out _balon3, "Fútbol Americano", (m, c, f) => new FutbolAmericano(m, c, f));
                         break;
-
                     case 4:
-                        IngresarVolley();
+                        IngresarBalon(out _balon4, "Voleibol", (m, c, f) => new Volley(m, c, f));
                         break;
-
                     case 5:
-                        if (futbolIngresado)
-                            Console.WriteLine(ob1);
-                        else
-                            Console.WriteLine("Primero debe ingresar el balón de fútbol.");
+                        MostrarBalon(_balon1, "Fútbol");
                         break;
-
                     case 6:
-                        if (basketIngresado)
-                            Console.WriteLine(ob2);
-                        else
-                            Console.WriteLine("Primero debe ingresar el balón de baloncesto.");
+                        MostrarBalon(_balon2, "Baloncesto");
                         break;
-
                     case 7:
-                        if (futbolAmericanoIngresado)
-                            Console.WriteLine(ob3);
-                        else
-                            Console.WriteLine("Primero debe ingresar el balón de fútbol americano.");
+                        MostrarBalon(_balon3, "Fútbol Americano");
                         break;
-
                     case 8:
-                        if (volleyIngresado)
-                            Console.WriteLine(ob4);
-                        else
-                            Console.WriteLine("Primero debe ingresar el balón de voleibol.");
+                        MostrarBalon(_balon4, "Voleibol");
                         break;
-
                     case 9:
-                        if (futbolIngresado)
-                        {
-                            ob1.Inflar();
-                            Console.WriteLine("El balón de fútbol fue inflado.");
-                            ob1.Capacidad();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Primero debe ingresar el balón de fútbol.");
-                        }
+                        InflarBalonMenu();
                         break;
-
                     case 10:
-                        if (futbolIngresado)
-                        {
-                            Console.Write("Ingrese el nuevo color: ");
-                            string color = Console.ReadLine();
-
-                            ob1.CambiarColor(color);
-
-                            Console.WriteLine("Color cambiado correctamente.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Primero debe ingresar el balón de fútbol.");
-                        }
+                        CambiarColorMenu();
                         break;
-
                     case 0:
                         Console.WriteLine("Programa finalizado.");
                         break;
-
                     default:
-                        Console.WriteLine("Opción no válida.");
+                        Console.WriteLine("Opción no válida. Intente nuevamente.");
                         break;
                 }
 
             } while (opcion != 0);
         }
 
-        private void IngresarFutbol()
+        // Método genérico para la captura de datos e instanciación
+        private void IngresarBalon<T>(out T objetoBalon, string nombreTipo, Func<string, int, string, T> creador) where T : Balon
         {
-            Console.WriteLine("\n--- INGRESAR BALON DE FUTBOL ---");
+            Console.WriteLine($"\n--- INGRESAR BALÓN DE {nombreTipo.ToUpper()} ---");
 
             Console.Write("Material: ");
             string material = Console.ReadLine();
 
-            Console.Write("Capacidad: ");
-            int capacidad = Convert.ToInt32(Console.ReadLine());
+            int capacidad = LeerEntero("Capacidad (número entero positivo): ");
 
             Console.Write("Forma: ");
             string forma = Console.ReadLine();
@@ -148,84 +89,79 @@ namespace Caso_Balon
             Console.Write("Color: ");
             string color = Console.ReadLine();
 
-            ob1 = new Futbol(material, capacidad, forma);
-            ob1.CambiarColor(color);
+            objetoBalon = creador(material, capacidad, forma);
+            objetoBalon.CambiarColor(color);
 
-            futbolIngresado = true;
-
-            Console.WriteLine("\nBalón de fútbol ingresado correctamente.");
+            Console.WriteLine($"\nBalón de {nombreTipo} ingresado correctamente.");
         }
 
-        private void IngresarBasket()
+        private void MostrarBalon(Balon balon, string nombreTipo)
         {
-            Console.WriteLine("\n--- INGRESAR BALON DE BALONCESTO ---");
-
-            Console.Write("Material: ");
-            string material = Console.ReadLine();
-
-            Console.Write("Capacidad: ");
-            int capacidad = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Forma: ");
-            string forma = Console.ReadLine();
-
-            Console.Write("Color: ");
-            string color = Console.ReadLine();
-
-            ob2 = new Basket(material, capacidad, forma);
-            ob2.CambiarColor(color);
-
-            basketIngresado = true;
-
-            Console.WriteLine("\nBalón de baloncesto ingresado correctamente.");
+            if (balon != null)
+                Console.WriteLine($"\n{balon}");
+            else
+                Console.WriteLine($"\nPrimero debe ingresar el balón de {nombreTipo}.");
         }
 
-        private void IngresarFutbolAmericano()
+        private void InflarBalonMenu()
         {
-            Console.WriteLine("\n--- INGRESAR BALON DE FUTBOL AMERICANO ---");
-
-            Console.Write("Material: ");
-            string material = Console.ReadLine();
-
-            Console.Write("Capacidad: ");
-            int capacidad = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Forma: ");
-            string forma = Console.ReadLine();
-
-            Console.Write("Color: ");
-            string color = Console.ReadLine();
-
-            ob3 = new FutbolAmericano(material, capacidad, forma);
-            ob3.CambiarColor(color);
-
-            futbolAmericanoIngresado = true;
-
-            Console.WriteLine("\nBalón de fútbol americano ingresado correctamente.");
+            Balon balon = SeleccionarBalonExistente("inflar");
+            if (balon != null)
+            {
+                balon.Inflar();
+                Console.WriteLine("El balón fue inflado.");
+                balon.Capacidad();
+            }
         }
 
-        private void IngresarVolley()
+        private void CambiarColorMenu()
         {
-            Console.WriteLine("\n--- INGRESAR BALON DE VOLEIBOL ---");
+            Balon balon = SeleccionarBalonExistente("cambiar el color");
+            if (balon != null)
+            {
+                Console.Write("Ingrese el nuevo color: ");
+                string nuevoColor = Console.ReadLine();
+                balon.CambiarColor(nuevoColor);
+                Console.WriteLine("Color cambiado correctamente.");
+            }
+        }
 
-            Console.Write("Material: ");
-            string material = Console.ReadLine();
+        private Balon SeleccionarBalonExistente(string accion)
+        {
+            Console.WriteLine($"\n¿De qué balón desea {accion}?");
+            Console.WriteLine("1. Fútbol");
+            Console.WriteLine("2. Baloncesto");
+            Console.WriteLine("3. Fútbol Americano");
+            Console.WriteLine("4. Voleibol");
 
-            Console.Write("Capacidad: ");
-            int capacidad = Convert.ToInt32(Console.ReadLine());
+            int sel = LeerEntero("Selección: ");
+            Balon seleccionado = sel switch
+            {
+                1 => _balon1,
+                2 => _balon2,
+                3 => _balon3,
+                4 => _balon4,
+                _ => null
+            };
 
-            Console.Write("Forma: ");
-            string forma = Console.ReadLine();
+            if (seleccionado == null)
+            {
+                Console.WriteLine("Balón no disponible o no ha sido ingresado aún.");
+            }
 
-            Console.Write("Color: ");
-            string color = Console.ReadLine();
+            return seleccionado;
+        }
 
-            ob4 = new Volley(material, capacidad, forma);
-            ob4.CambiarColor(color);
-
-            volleyIngresado = true;
-
-            Console.WriteLine("\nBalón de voleibol ingresado correctamente.");
+        // Método auxiliar para evitar excepciones al leer números
+        private int LeerEntero(string mensaje)
+        {
+            int numero;
+            Console.Write(mensaje);
+            while (!int.TryParse(Console.ReadLine(), out numero) || numero < 0)
+            {
+                Console.Write("Entrada no válida. Ingrese un entero mayor o igual a 0: ");
+            }
+            return numero;
         }
     }
 }

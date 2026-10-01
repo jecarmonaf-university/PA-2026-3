@@ -1,83 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caso_Balon
 {
     public class Balon
     {
-        //Atributos
-        private String Material;
-        private int capacidad;
-        private String Color;
-        private int CapActual;
-        private String Forma;
+        // Atributos privados (encapsulamiento)
+        private string _material;
+        private int _capacidad;
+        private string _color;
+        private int _capActual;
+        private string _forma;
 
-        //Constructor sin Parametros
-        //public void balonpredeterminado()
-        //{
-        //    material = "cuero";
-        //    capacidad = 5;
-        //    forma = "esferica";
-        //    color = "blanco";
-        //    capactual = 0;
-        //}
-        //Constructor con Parametros
-        public Balon(string m, int c, string f)
+        // Constructor por defecto
+        public Balon()
         {
-            Material = m;
-            capacidad = c;
-            Forma = f;
-            Color = "Sin definir";
-            CapActual = 0;
+            _material = "Cuero";
+            _capacidad = 5;
+            _forma = "Esférica";
+            _color = "Sin definir";
+            _capActual = 0;
         }
-        //Inflar
+
+        // Constructor con parámetros
+        public Balon(string material, int capacidad, string forma)
+        {
+            _material = material;
+            _capacidad = capacidad > 0 ? capacidad : 1;
+            _forma = forma;
+            _color = "Sin definir";
+            _capActual = 0;
+        }
+
+        // Métodos de comportamiento
         public void Inflar()
         {
-            if ((CapActual + 1) <= capacidad)
+            if (_capActual + 1 <= _capacidad)
             {
-                CapActual++;
+                _capActual++;
             }
         }
 
-        // Mostrar CapActul
         public void Capacidad()
         {
-            Console.WriteLine("Capacidad actual: " + CapActual + "/" + capacidad);
-        }
-        //Cambiar Color 
-        public void CambiarColor(string NuevoColor)
-        {
-            Color = NuevoColor;
-        }
-        public string GetMaterial()
-        {
-            return Material;
+            Console.WriteLine($"Capacidad actual: {_capActual}/{_capacidad}");
         }
 
-        public int GetCapacidad()
+        public void CambiarColor(string nuevoColor)
         {
-            return capacidad;
+            if (!string.IsNullOrWhiteSpace(nuevoColor))
+            {
+                _color = nuevoColor;
+            }
         }
 
-        public String GetColor()
-        {
-            return Color;
-        }
-
-        public string GetForma()
-        {
-            return Forma;
-        }
-
-        public int GetCapActual()
-        {
-            return CapActual;
-        }
+        // Métodos Getters
+        public string GetMaterial() => _material;
+        public int GetCapacidad() => _capacidad;
+        public string GetColor() => _color;
+        public string GetForma() => _forma;
+        public int GetCapActual() => _capActual;
     }
 }
